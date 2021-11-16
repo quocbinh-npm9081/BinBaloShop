@@ -5,12 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BinClasses</title>
+  <title>Bin Balo shop</title>
   <!-- file animation -->
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <!-- slick slider- Over views -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+  <link rel="stylesheet"
+    href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -419,10 +420,10 @@
             <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Company</a>
           </div>
           <% if(user){%>
-          <div class="flow-root">
-            <a href="/customer/order" class="-m-2 p-2 block font-medium text-gray-900">Stores</a>
-          </div>
-          <% }%>
+            <div class="flow-root">
+              <a href="/customer/order" class="-m-2 p-2 block font-medium text-gray-900">Stores</a>
+            </div>
+            <% }%>
         </div>
 
         <div class="border-t border-gray-200 py-6 px-4 space-y-6">
@@ -877,13 +878,15 @@
                   </div>
                 </div>
                 <%if(user){%>
-                  <% if(user.role ==='admin'){%>
-                    <a href="/admin/orders" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Admin Ordered</a>
-                  <% } %>
-                  <% if(user.role ==='customer'){%>
-                    <a href="/customer/orders" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Ordered</a>
-                  <% } %>
-                <%}%>
+                  <% if(user.role==='admin' ){%>
+                    <a href="/admin/orders"
+                      class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Admin Ordered</a>
+                    <% } %>
+                      <% if(user.role==='customer' ){%>
+                        <a href="/customer/orders"
+                          class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Ordered</a>
+                        <% } %>
+                          <%}%>
               </div>
             </div>
 
@@ -921,10 +924,11 @@
         </div>
       </nav>
     </header>
-  </div>   
-    <%- body %>
+  </div>
+  <%- body %>
     <script src="/socket.io/socket.io.js" type="text/javascript"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/js/updateStatus.js" type="text/javascript"></script>
 </body>
+
 </html>
