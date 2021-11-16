@@ -1,0 +1,94 @@
+
+<div class="h-screen bg-gray-300">
+    <div class="py-12">
+        <% if(session.cart){%>
+        <div class="max-w-md mx-auto bg-gray-100 shadow-lg rounded-lg md:max-w-5xl">
+            <div class="md:flex ">
+                <div class="w-full p-4 px-5 py-5">
+                    <div class="md:grid md:grid-cols-3 gap-2 ">
+                        <div class="col-span-2 p-5">
+                            <h1 class="text-xl font-medium ">Shopping Cart</h1>
+                            <% for( let product of Object.values(session.cart.items)){ %>
+                                <% if(product.qty != 0){ %>
+                                    <div class=" flex justify-between items-center mt-4 pt-4 border-t ">
+                                        <a class="flex justify-between items-center mt-4 pt-4 w-full" href="/overviews/<%= product.item._id%>">
+                                            <div class="flex items-center"> <img src="<%= product.item.imageMain%>" width="60" class="rounded-full ">
+                                                <div class="flex flex-col ml-3 "> <span class="text-md font-medium"><%= product.item.name%></span>
+                                                    <span class="text-xs font-light text-gray-400"><%= product.item.color%></span>
+                                                    <span class="text-xs font-light text-gray-400"><%= product.item.name %></span> 
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="pr-8 text-md font-light ">Qty: <span class=" text-gray-400"><%= product.qty %> </span></div>
+                                                <div class="pr-8"> <span class="text-xl font-medium">$<%= product.item.price%></span> </div>
+                                            </div>
+                                         
+                                        </a>
+                                    </div>      
+                                <% } %>                                        
+                            <% } %>
+                            
+                            <div class="flex justify-between items-center mt-6 pt-6 border-t ">
+                                <div class="flex items-center"> <i class="fa fa-arrow-left text-sm pr-2"></i>
+                                <a href="/">
+                                 <span class="text-md font-medium text-blue-500">
+                                        Continue Shopping
+                                    </span>
+                                </a>
+                                   
+                                </div>
+                                <div class="flex justify-center items-end"> <span class="text-sm font-medium text-gray-400 mr-1">Subtotal:</span> <span class="text-lg font-bold text-gray-800 "> $<%=session.cart.totalPrice%></span> </div>
+                            </div>
+                        </div>
+                        <div class=" p-5 bg-gray-800 rounded overflow-visible">
+                             <span class="text-xl font-medium text-gray-100 block pb-3">
+                            Order Information
+
+                        </span>
+                            <form action="/checkout" method="post">
+                                <% if(messages.error){ %>
+                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                    <strong class="font-bold">ERROR !</strong>
+                                    <span class="block sm:inline"><%= messages.error %></span>
+                                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20">
+                                        <title>Close</title>
+                                     <path
+                                     d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                                    </svg>
+                                    </span>
+                                </div>
+                                <% } %>
+                                <div class="flex justify-center flex-col pt-3"> <label class="text-xs text-gray-400 mb-2 ">Phone Number</label>
+                                    <input name="phoneNumber" type="text" value="<%=user.phoneNumber%>" class="focus:outline-none w-fsull h-6 bg-gray-800 text-white placeholder-gray-300 text-sm border-b border-gray-600 py-4" placeholder=""> 
+                                </div>
+                                <div class="flex justify-center flex-col pt-3"> <label class="text-xs text-gray-400 mb-2">Adress</label> 
+                                    <input name="adress" type="text" class="focus:outline-none w-full h-6 bg-gray-800 text-white placeholder-gray-300 text-sm border-b border-gray-600 py-4" placeholder="">
+                                </div>
+                                 <div class="flex justify-center flex-col pt-3"> <label class="text-xs text-gray-400 mb-2">Payment Type</label> 
+                                    <select class="appearance-none" name="paymentType">
+                                        <option value="COD" >COD</option>
+                                        <option value="NO"  >No</option>
+                                    </select>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 pt-2 mb-3">
+                                </div> 
+                                <button type="submit" class="h-12 w-full bg-blue-500 rounded focus:outline-none text-white hover:bg-blue-600">Check Out</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}else{%>
+            <h2 class="font-bold text-2xl text-center py-5 mt-10">
+                Your shopping cart is empty.
+            </h2>
+            <div class="w-1/5 mx-auto "><img src="/image/empty-cart.png" alt=""></div>
+            <div class="text-center mt-10">
+                <a href="/" class="btn py-3 px-6" rel="">Buy Now </a>
+            </div>
+        <% } %>
+    </div>
+    </div>

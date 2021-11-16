@@ -1,0 +1,128 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "~noty/src/noty.scss";
+@import "~noty/src/themes/mint.scss";
+@import "./variable";
+// over views page
+.slider-for {
+    div {
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+            min-width: 20%;
+        }
+    }
+}
+
+.slider-nav {
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    div {
+        img {
+            padding: 10%;
+            position: relative;
+            text-align: center;
+        }
+    }
+}
+
+@mixin smooth() {
+    transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -ms-transition: all .2s ease-in;
+}
+
+.btn {
+    background-color: #2A2A2A;
+    border: 1px solid #2A2A2A;
+    color: whitesmoke;
+    &:hover {
+        background-color: aliceblue;
+        color: rgba(17, 24, 39, var(--tw-text-opacity));
+        @include smooth();
+    }
+}
+
+section.status {
+    background-color: $secondary;
+    min-height: 100vh;
+}
+
+.status-box {
+    padding: 40px 0 0;
+}
+
+//Dots ( /customer/orders/:id)
+.status-box ul li span::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    background-color: #2A2A2A;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 1px 10px $secondary;
+}
+
+//Icon( /customer/orders/:id)
+.status-box ul li span::before {
+    position: absolute;
+    left: -90px;
+    top: 50%;
+    font-size: 54px;
+    font-family: "Line Awesome Free";
+    font-weight: 600;
+    transform: translateY(-50%);
+}
+
+.status-box ul li:nth-child(1) span::before {
+    content: '\f46c';
+}
+
+.status-box ul li:nth-child(2) span::before {
+    content: '\f560';
+}
+
+.status-box ul li:nth-child(3) span::before {
+    content: '\f290';
+}
+
+.status-box ul li:nth-child(4) span::before {
+    content: '\f0d1';
+}
+
+.status-box ul li:nth-child(5) span::before {
+    content: '\f118';
+    box-shadow: 0 20px 10px 20px $secondary;
+}
+
+//line
+.status-line::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 0;
+    background-color: #2A2A2A;
+    width: 2px;
+    height: 100%;
+}
+
+.status-box ul .step-completed {
+    opacity: 0.3;
+}
+
+.status-box ul .current span {
+    color: orange;
+}
+
+.status-box ul .current span::after {
+    background-color: orange;
+}

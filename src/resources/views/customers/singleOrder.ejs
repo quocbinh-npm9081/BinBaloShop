@@ -1,0 +1,61 @@
+<section class="status">
+    <div class="container mx-auto">
+        <div class="status-box w-2/3 mx-auto">
+            <h1 class="font-bold text-xl">
+                Track Delivery Status
+            </h1>
+            <input type="hidden" id="hiddenInput" value="<%=JSON.stringify(orders)%>">
+            <div class="flex mt-10 items-start justify-center  ">
+                <div class="ml-48 w-1/2">
+                    <ul>
+                        <li class="status-line pb-16 relative" data-status="order_placed">
+                            <span class="font-bold relative pl-4" >Order Placed</span>
+                        </li>
+                        <li class="status-line pb-16 relative" data-status="confirmed" >
+                            <span class="font-bold relative pl-4 ">Order Confirmation</span>
+                        </li>
+                        <li class="status-line pb-16 relative"data-status="prepared" >
+                            <span class="font-bold relative pl-4" >Preparation</span>
+                        </li>
+                        <li class="status-line pb-16 relative" data-status="delivered">
+                            <span class="font-bold relative pl-4"  > Out The Delivery</span>
+                        </li>
+                        <li class="status-line relative" data-status="completed">
+                            <span class="font-bold relative pl-4" > Completed </span>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class=" w-1/2">
+                    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                        <%for( let product of Object.values(orders.items)){ %>
+                            <div class=" flex items-center justify-between w-full py-2">
+                                <div class="px-2">
+                                    <img class="w-16 object-cover rounded-full mx-auto border-black border-gray-400"
+                                        src="<%=product.item.imageMain%>" alt="imageProduct" />
+                                </div>
+                                <div class="px-2 py-2">
+                                    <h2 class="font-bold">
+                                        <%= product.item.name %>
+                                    </h2>
+                                    <span>
+                                        <%= product.item.color %>
+                                    </span>
+                                </div>
+                                <div class="px-2 py-2">
+                                        <%= product.qty %>
+                                </div>
+                                <div class="px-2 py-2">
+                                    <a href="/overviews/<%=product.item._id%>"
+                                        class="px-2 py-2 rounded-lg bg-indigo-400 text-gray-50 hover:bg-blue-800 focus:bg-blue-800">Detail</a>
+                                </div>
+                            </div>
+                            <hr> 
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,45 @@
+<div class=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="px-4 md:px-10 py-4 md:py-7">
+        <div class="sm:flex items-center justify-between">
+            <p tabindex="0"
+                class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">
+                Order All
+            </p>
+        </div>
+
+    </div>
+    <div class="bg-white px-4 md:px-10 pb-5">
+        <div class="overflow-x-auto	">
+            <table class="w-full whitespace-nowrap  ">
+                <thead>
+                    <tr>
+                        <th class="font-bold text-sm text-left px-2 py-1">
+                            Order
+                        </th>
+                        <th class="font-bold text-sm text-left px-2 py-1">
+                            Customer
+                        </th>                     
+                        <th class="font-bold text-sm text-left px-2 py-1">
+                            Adress
+                        </th>
+                        <th class="font-bold text-sm text-left px-2 py-1">
+                            Status
+                        </th>
+                        <th class="font-bold text-sm text-left px-2 py-1">
+                            Placed At
+                        </th>
+                    </tr>
+                </thead>
+                <% if(orders != 0){%>
+                <tbody id="ordertTableOrder">
+                </tbody>
+                    <%}else{%>
+                        <h2 class="text-center ">We don't hane order or Orders have been done</h2>
+                    <% } %>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<script src="/js/admin.js"></script>

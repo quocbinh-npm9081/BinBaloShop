@@ -1,0 +1,111 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="container mx-auto">
+  <% if(session.cart && session.cart.totalQuality> 0){ %>
+    <div class="h-full flex flex-col bg-white shadow-xl w-3/4 mx-auto mt-5">
+      <div class="flex-1 py-6 overflow-y-auto px-4 sm:px-6">
+        <div class="flex items-start justify-between">
+
+          <div class="text-center">
+            <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
+              Shopping cart
+            </h2>
+          </div>
+          <div class="ml-3 h-7 flex items-center">
+            <a href="/" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+              <span class="sr-only">Close panel</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="mt-8">
+          <div class="flow-root">
+            <ul role="list" class="-my-6 divide-y divide-gray-200">
+              <% for(let product of Object.values(session.cart.items)){ %>
+                <% if(product.qty !=0){ %>
+                  <li class="py-6 flex item-in-cart">
+                    <div class="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
+                      <img src="<%= product.item.imageMain%>"
+                        alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+                        class="w-full h-full object-center object-cover">
+                    </div>
+                    <div class="ml-4 flex-1 flex flex-col">
+                      <div>
+                        <div class="flex justify-between text-base font-medium text-gray-900">
+                          <h3>
+                            <a href="#">
+                              <%= product.item.name%>
+                            </a>
+                          </h3>
+                          <p class="ml-4">
+                            $<%= product.item.price%>
+
+                          </p>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500">
+                          <%= product.item.color%>
+
+                        </p>
+                      </div>
+                      <div class="flex-1 flex items-end justify-between text-sm">
+                        <p class=" text-gray-500">
+                          Qty: <span class="qty ">
+                            <%= product.qty%>
+                          </span>
+                        </p>
+
+                        <div class="flex">
+                          <button type="button" data-product="<%= JSON.stringify(product) %>"
+                            class="btn-remove-product font-medium text-red-600 hover:text-red-500">Remove</button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <% } %>
+                <% } %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
+        <div class="flex justify-between text-base font-medium text-gray-900">
+          <p>Subtotal</p>
+          <p class="text-2xl font-bold">
+            $ <span id="totalPrice">
+              <%= session.cart.totalPrice %>
+            </span>
+          </p>
+        </div>
+        <p class="mt-0.5 text-sm text-gray-500 pb-5">Shipping and taxes calculated at checkout.</p>
+        <% if(user){ %>
+            <div class="mt-6 w-1/6 mx-auto flex item-center justify-center">
+          <a href="/checkout"
+            class="btn px-4 py-2">Checkout</a>
+        </div>
+    
+        <div class="mt-6 flex justify-center text-sm text-center text-gray-500">
+          <p>
+            or <a href="/" class="text-indigo-600 font-medium hover:text-indigo-500">Continue Shopping<span
+                aria-hidden="true"> &rarr;</span></a>
+          </p>
+        </div>
+        <% }else{ %>
+         <div class="text-center">
+            <a href="/login" class="btn py-3 px-6">Login to continue</a>
+         </div> 
+         <% } %>
+      </div>
+    </div>
+    <% }else{ %>
+      <h2 class="font-bold text-2xl text-center py-5 mt-10">Your shopping cart is empty.
+      </h2>
+      <div class="w-1/5 mx-auto "><img src="/image/empty-cart.png" alt=""></div>
+      <div class="text-center mt-10">
+        <a href="/" class="btn py-3 px-6" rel="">Buy Now </a>
+      </div>
+      <% } %>
+</div>
+<script src="/js/removeProduct.js"></script>
